@@ -48,3 +48,15 @@
   padding: 12px 20px;
   resize: vertical;
 }
+
+.search-button {
+  background-color: #6f6f6f;
+  color: white;
+  margin-top: 3%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: medium;
+}

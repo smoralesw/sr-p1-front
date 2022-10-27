@@ -1,4 +1,5 @@
 import './App.css';
+import Axios from 'axios';
 import { useState } from 'react';
 
 function App() {
@@ -6,6 +7,23 @@ function App() {
   const [artistIn, setArtistIn] = useState('');
   const [nameOut, setNameOut] = useState('');
   const [artistOut, setArtistOut] = useState('');
+  // const [trackIn, setTrackIn] = useState({});
+  // const [trackOut, setTrackOut] = useState({});
+
+  const handleSend = async () => {
+    try {
+      const resp = await Axios.post('http://localhost:8000/getTracks', {
+        nameIn: nameIn,
+        artistIn: artistIn,
+        nameOut: nameOut,
+        artistOut: artistOut
+      })
+      console.log(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <div className="App">
@@ -18,10 +36,8 @@ function App() {
         <input className="search-bar" type="text" placeholder="Nombre" onChange={(event) => setNameOut(event.target.value)}/>
         <input className="search-bar" type="text" placeholder="Artista" onChange={(event) => setArtistOut(event.target.value)}/>
 
-        <p>{nameIn}</p>
-        <p>{artistIn}</p>
-        <p>{nameOut}</p>
-        <p>{artistOut}</p>
+        {/* Send Info */}
+        <button className="search-button" onClick={() => handleSend() }>Buscar</button>        
       </header>
 
     </div>
