@@ -1,24 +1,25 @@
 import './App.css';
 import Axios from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PathsInfo from './PathsInfo';
 
 function App() {
   const [nameIn, setNameIn] = useState('');
   const [artistIn, setArtistIn] = useState('');
   const [nameOut, setNameOut] = useState('');
   const [artistOut, setArtistOut] = useState('');
-  // const [trackIn, setTrackIn] = useState({});
-  // const [trackOut, setTrackOut] = useState({});
+  const [response, setResponse] = useState();
+
 
   const handleSend = async () => {
     try {
-      const resp = await Axios.post('http://localhost:8000/getTracks', {
+      const resp = await Axios.post('http://localhost:8000/getPath', {
         nameIn: nameIn,
         artistIn: artistIn,
         nameOut: nameOut,
         artistOut: artistOut
       })
-      console.log(resp.data);
+      setResponse(resp.data);
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +40,11 @@ function App() {
         {/* Send Info */}
         <button className="search-button" onClick={() => handleSend() }>Buscar</button>        
       </header>
+
+      <div>
+        {/* if response is not null */}
+        {response && <PathsInfo paths_len={Object.keys(response)} paths={Object.values(response)}/>}
+      </div>
 
     </div>
   );
