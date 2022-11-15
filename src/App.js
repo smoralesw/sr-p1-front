@@ -20,6 +20,7 @@ function App() {
         nameOut: nameOut,
         artistOut: artistOut
       })
+      console.log(resp.data);
       setResponseKeys(Object.keys(resp.data.result.most_stable_paths));
       setResponseValues(Object.values(resp.data.result.most_stable_paths));
     } catch (error) {
@@ -46,6 +47,7 @@ function App() {
           {/* if response is not null */}
           {responseKeys && <PathsInfo paths_len={ responseKeys } paths={ responseValues }/>}
         </div>
+
       </header>
 
 
