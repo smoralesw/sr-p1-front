@@ -5,7 +5,7 @@ import { Table } from 'react-bootstrap';
 import { ArrowDown } from 'css.gg';
 import { Heart } from 'css.gg';
 
-const PathsInfo = ({paths_len, paths}) => {
+const PathsInfo = ({ paths_len, paths, accessToken }) => {
   const [pathIndex, setPath] = useState(0);
 
   const handlePath = async (index) => {
@@ -14,8 +14,20 @@ const PathsInfo = ({paths_len, paths}) => {
 
   const handleAdd = async (id) => {
     try {
-      const resp = await Axios.get(`http://localhost:8000/addTrackSpotify/${id}`)
-      console.log(resp.data);
+      const url = 'https://api.spotify.com/v1/me/tracks';
+      const config = {
+        headers: {
+          'Authorization': 'Bearer ' + accessToken,
+        },
+        params: {
+          ids: id,
+        }
+      };
+      // Save track for current user
+      const resp = await Axios.put(url, null, config);
+      if (resp.status === 200) {
+        alert("Added to your library!");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -28,17 +40,17 @@ const PathsInfo = ({paths_len, paths}) => {
         <thead>
           <tr>
             {paths_len.map((path, index) => (
-                <th key={index} onClick={() => handlePath(index)}>
-                  <div className='table-header'>
-                    {path}
-                    {(() => {
-                      if (pathIndex === index) {
-                        return <ArrowDown/>
-                      }
-                      return <> </>;
-                    })()} 
-                  </div>
-                </th>
+              <th key={index} onClick={() => handlePath(index)}>
+                <div className='table-header'>
+                  {path}
+                  {(() => {
+                    if (pathIndex === index) {
+                      return <ArrowDown />
+                    }
+                    return <> </>;
+                  })()}
+                </div>
+              </th>
             ))}
           </tr>
         </thead>
@@ -53,17 +65,16 @@ const PathsInfo = ({paths_len, paths}) => {
         </thead>
         <tbody>
           {paths[pathIndex].map((track, index_) => (
-                <tr key={index_}>
-                  <td id="reducedFont">{index_ + 1}</td>
-                  <td id="reducedFont">{track[0]}</td>
-                <td><button className="add-button2" onClick={() => handleAdd(track[1]) }>{<Heart />}</button></td>
-                {/* <td><button className="add-button" onClick={() => handleAdd(track[1]) }>+</button></td> */}
-              </tr>
-              ))}
+            <tr key={index_}>
+              <td id="reducedFont">{index_ + 1}</td>
+              <td id="reducedFont">{track[0]}</td>
+              <td><button className="add-button" onClick={() => handleAdd(track[1])}>{<Heart />}</button></td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
-    );
+  );
 };
-  
+
 export default PathsInfo;

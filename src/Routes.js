@@ -11,11 +11,9 @@ export default function RoutesFunction() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<SearchPlace />} />
-        <Route path="/getApiToken/:refresh" element={<GetApiToken />} />
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/AboutUs" element={<AboutSmart />} /> */}
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="/search/:accessToken" element={<SearchPlace />} />
+        {/* <Route path="/search/:accessToken/:refreshToken/:expiresIn/:tokenType" element={<SearchPlace />} /> */}
+        <Route path="/getApiToken" element={<GetApiToken />} />
       </Routes>
     </div>
   );

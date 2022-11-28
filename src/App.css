@@ -13,6 +13,12 @@
   color: white;
 }
 
+.search-h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+}
+
 #search-bar {
   height: 30px;
   border: 1px solid #ccc;
@@ -58,17 +64,6 @@
 }
 
 .add-button {
-  background-color: #6f6f6f;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: large;
-}
-
-.add-button2 {
   background-color: #6f6f6f;
   color: white;
   padding: 17px 15px;

@@ -3,8 +3,17 @@ import './App.css';
 
 function Home() {
   const CLIENT_ID = '7b225af86b5542da99761ccd7925af04';
-  const CLIENT_SECRET = '5d527c743e0f411daddced2cd3d15504';
-  const REDIRECT_URL = 'http://localhost:3001/getApiToken/false';
+  const REDIRECT_URL = 'http://localhost:3001/getApiToken';
+
+  const generateRandomString = (length) => {
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  };
 
   const handleAuth = async () => {
     try {
@@ -15,7 +24,7 @@ function Home() {
           response_type: 'code',
           redirect_uri: REDIRECT_URL,
           scope: 'user-read-private user-read-email user-library-modify',
-          // state: '34fFs29kd09',
+          state: generateRandomString(16),
           show_dialog: false,
         }
       };
@@ -30,9 +39,9 @@ function Home() {
   return (
     <div className="App">
       <header className="header">
-        <h1>Spotify Path Finder</h1>
+        <h1 className='search-h1'>Spotify Path Finder</h1>
 
-        <button className="search-button" onClick={() => handleAuth() }>Spotify Auth</button>        
+        <button className="search-button" onClick={() => handleAuth() }>Login</button>        
 
       </header>
     </div>
