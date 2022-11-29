@@ -6,13 +6,12 @@ import './App.css';
 
 function GetApiToken() {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     const CLIENT_ID = '7b225af86b5542da99761ccd7925af04';
     const CLIENT_SECRET = '5d527c743e0f411daddced2cd3d15504';
     const REDIRECT_URL = 'http://localhost:3001/getApiToken';
 
-    const [accessToken, setAccessToken] = React.useState('');
     // const [refreshToken, setRefreshToken] = React.useState('');
     // const [expiresIn, setExpiresIn] = React.useState('');
     // const [tokenType, setTokenType] = React.useState('');
@@ -38,7 +37,7 @@ function GetApiToken() {
                     redirect_uri: REDIRECT_URL,
                 };
                 const resp = await Axios.post(url, data, config);
-                setAccessToken(resp.data.access_token);
+                navigate(`/search/${resp.data.access_token}`);
             } catch (error) {
                 console.log(error);
             }
@@ -50,8 +49,7 @@ function GetApiToken() {
     return (
         <div className="App">
             <header className="header">
-                {/* if accessToken has been received, navigate to SearchPlace */}
-                {accessToken && navigate(`/search/${accessToken}`)}
+                <h1 className='search-h1'>Spotify Path Finder</h1>
             </header>
         </div>
     );
