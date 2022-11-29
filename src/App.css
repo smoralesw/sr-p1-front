@@ -103,3 +103,7 @@
   justify-content: "center";
   align-items: "center";
 }
+
+.error-msg {
+  color: rgb(196, 71, 71);
+}

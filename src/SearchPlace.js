@@ -17,6 +17,7 @@ function SearchPlace() {
   const [responseValues, setResponseValues] = useState();
   const [genre, setGenre] = useState('chilean');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const { accessToken } = useParams();
   // const { refreshToken } = useParams();
@@ -37,6 +38,8 @@ function SearchPlace() {
       setResponseKeys(Object.keys(resp.data.result.most_stable_paths));
       setResponseValues(Object.values(resp.data.result.most_stable_paths));
     } catch (error) {
+      setLoading(false);
+      setError(error.response.data.detail);
       console.log(error);
     }
   }
@@ -52,12 +55,18 @@ function SearchPlace() {
           <ThreeDots color="grey" height="250" width="250" />
         </div>}
 
+        {/* Error message */}
+        {error && <div className='error'>
+          <h1 className='error-msg'>{error}</h1>
+        </div>}
+
         <p className='text'>Qué género te interesa descubrir?</p>
         <select className='select' onChange={(event) => setGenre(event.target.value)}>
           <option value='chilean'>Artistas Chilenos</option>
           <option value='reggaeton' >Reggaeton</option>
           <option value='ska'>Ska</option>
           <option value='hardrockslimmer'>Rock</option>
+          <option value='trap'>Trap Latino</option>
         </select>
         
         <p className='text'>Ingresa una canción de entrada</p>
