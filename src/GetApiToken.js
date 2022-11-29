@@ -23,7 +23,6 @@ function GetApiToken() {
         async function postAuthCode() {
             try {
                 const authCode = searchParams.get('code');
-                const state = searchParams.get('state');
                 const url = 'https://accounts.spotify.com/api/token';
                 const config = {
                     headers: {
@@ -43,7 +42,7 @@ function GetApiToken() {
             }
         }
         postAuthCode();
-    }, [searchParams]);
+    }, [searchParams, navigate]);
 
 
     return (
