@@ -30,6 +30,7 @@ function Home() {
         }
       };
       // redirect to spotify auth
+      console.log("Listo para enviar a Spotify");
       window.location.replace(url + new URLSearchParams(config.params));
 
     } catch (error) {
