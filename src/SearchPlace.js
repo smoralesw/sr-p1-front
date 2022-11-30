@@ -19,6 +19,8 @@ function SearchPlace() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const URL_BACK = 'http://localhost:8000/getPath';
+
   const { accessToken } = useParams();
   // const { refreshToken } = useParams();
   // const { expiresIn } = useParams();
@@ -26,8 +28,9 @@ function SearchPlace() {
 
   const handleSend = async () => {
     try {
+      setError("");
       setLoading(true);
-      const resp = await Axios.post('http://localhost:8000/getPath', {
+      const resp = await Axios.post(URL_BACK, {
         nameIn: nameIn,
         artistIn: artistIn,
         nameOut: nameOut,
@@ -56,7 +59,7 @@ function SearchPlace() {
         </div>}
 
         {/* Error message */}
-        {error && <div className='error'>
+        {error !== "" && <div className='error'>
           <h1 className='error-msg'>{error}</h1>
         </div>}
 

@@ -3,7 +3,8 @@ import './App.css';
 
 function Home() {
   const CLIENT_ID = '7b225af86b5542da99761ccd7925af04';
-  const REDIRECT_URL = 'http://localhost:3001/getApiToken';
+  // const REDIRECT_URL = 'http://localhost:3001/getApiToken';
+  const REDIRECT_URL = 'https://elaborate-cat-061860.netlify.app/getApiToken';
 
   const generateRandomString = (length) => {
     let text = '';
