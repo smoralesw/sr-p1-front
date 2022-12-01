@@ -10,8 +10,8 @@ function GetApiToken() {
 
     const CLIENT_ID = '7b225af86b5542da99761ccd7925af04';
     const CLIENT_SECRET = '5d527c743e0f411daddced2cd3d15504';
-    // const REDIRECT_URL = 'http://localhost:3001/getApiToken';
-    const REDIRECT_URL = 'https://elaborate-cat-061860.netlify.app/getApiToken';
+    const REDIRECT_URL = 'http://localhost:3001/getApiToken';
+    // const REDIRECT_URL = 'https://elaborate-cat-061860.netlify.app/getApiToken';
 
     // const [refreshToken, setRefreshToken] = React.useState('');
     // const [expiresIn, setExpiresIn] = React.useState('');

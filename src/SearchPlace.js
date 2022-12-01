@@ -66,8 +66,8 @@ function SearchPlace() {
         <p className='text'>Qué género te interesa descubrir?</p>
         <select className='select' onChange={(event) => setGenre(event.target.value)}>
           <option value='chilean'>Artistas Chilenos</option>
-          <option value='reggaeton' >Reggaeton</option>
-          <option value='ska'>Ska</option>
+          {/* <option value='reggaeton' >Reggaeton</option> */}
+          {/* <option value='ska'>Ska</option> */}
           <option value='hardrockslimmer'>Rock</option>
           <option value='trap'>Trap Latino</option>
         </select>
